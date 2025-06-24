@@ -6,8 +6,20 @@ func mySubstring(source: String, from: Int, to: Int) -> String {
   for currentChar in source {
     if index >= from && index <= to {
       result.insert(currentChar, at:result.endIndex)
+    } else if index > to {
+      break
     }
     index += 1
+  }
+  return result
+}
+
+func removeWhiteSpaces(source: String) -> String {
+  var result:String = ""
+  for currentChar in source {
+    if !currentChar.isWhitespace {
+      result.insert(currentChar, at:result.endIndex)
+    } 
   }
   return result
 }
@@ -24,11 +36,11 @@ func evaluateHelper(expression: inout String) -> Double {
       bracketsCount += 1
     } else if current == ")" {
       bracketsCount -= 1
-    } else if bracketsCount == 0 && !current.isNumber && !current.isWhitespace {
-      var left: String =  mySubstring(source: expression, from: 0, to: index - 2) 
+    } else if bracketsCount == 0 && !current.isNumber {
+      var left: String =  mySubstring(source: expression, from: 0, to: index - 1) 
       let leftEvaluated: Double = evaluateHelper(expression: &left)
   
-      var right: String =  mySubstring(source: expression, from: index + 2, to: expression.count - 1) 
+      var right: String =  mySubstring(source: expression, from: index + 1, to: expression.count - 1) 
       let rightEvaluated: Double = evaluateHelper(expression: &right)
     
       switch current {
@@ -47,6 +59,6 @@ func evaluateHelper(expression: inout String) -> Double {
 
 //function that calculates an equation 
 func evaluate(expression: String) -> Double {
-    var toEvaluate: String = expression
+    var toEvaluate: String = removeWhiteSpaces(source:expression)
     return evaluateHelper(expression: &toEvaluate)
 }

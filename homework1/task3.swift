@@ -55,9 +55,10 @@ struct MazeGraph : Maze {
           return
         }
       }
-      visited[element] = true
+			visited[element] = true
       if self.maze[element.row][element.col] == "*" {
         pathsCount += 1
+        return
       }
 
       let upElement = MazeElement(row: element.row - 1, col: element.col)
@@ -75,14 +76,13 @@ struct MazeGraph : Maze {
     }
 
     private func _isPassable(element: MazeElement) -> Bool {
-      return self.maze[element.row][element.col] != "#" && self.maze[element.row][element.col] != "1"
+      return self.maze[element.row][element.col] == "0" || self.maze[element.row][element.col] == "*" || self.maze[element.row][element.col] == "^"
     }
     private func _isValidPos(element: MazeElement) -> Bool {
       return element.row >= 0 && element.row < self.maze.count
        && element.col >= 0 && element.col < self.maze[0].count
     }
   }
-
 
 	func findPaths(maze: [[String]]) -> Int {
       var maze: MazeGraph = MazeGraph(raw:maze)
