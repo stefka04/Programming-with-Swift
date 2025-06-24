@@ -1,4 +1,4 @@
-## [Задачи](https://github.com/SwiftFMI/swift_2024_2025/blob/main/homework/Swift-%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%BE-2.md):
+## [Задачи:](https://github.com/SwiftFMI/swift_2024_2025/blob/main/homework/Swift-%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%BE-2.md)
 
 Дадени са следните протоколи (интерфейси):
 
